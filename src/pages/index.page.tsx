@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Navbar } from "@/layouts";
+import { Footer, Header } from "@/layouts";
 import { Hero, Featured, AllProducts } from "./_components";
 import type { NextPage } from "next";
 
@@ -10,10 +10,11 @@ const Home: NextPage = () => (
       <meta name="description" content="Escarlata Makeup" />
     </Head>
 
-    <Navbar />
+    <Header />
     <Hero />
     <Featured />
     <AllProducts />
+    <Footer />
   </>
 );
 
