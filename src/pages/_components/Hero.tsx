@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import type { FC } from "react";
 
 const Hero: FC = () => (
-  <div className="flex h-96 w-full items-center justify-center gap-24 bg-indigo-200 px-10 shadow-md sm:px-40">
+  <div className="flex w-full items-center justify-center gap-24 bg-indigo-200 py-14 px-10 shadow-md sm:px-40">
     <div className="flex flex-col gap-4">
       <div className="flex max-w-sm flex-col gap-4 text-center sm:max-w-md sm:text-left md:max-w-lg">
         <h1 className="text-2xl font-medium tracking-wide lg:text-3xl xl:text-5xl">
