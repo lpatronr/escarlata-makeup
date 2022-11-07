@@ -26,8 +26,8 @@ const AllProducts: FC = () => {
     });
 
   return (
-    <div className="flex flex-col gap-10 px-10 sm:px-8 md:px-12 lg:px-20 xl:flex-row 2xl:px-48">
-      <div className="mt-20 flex flex-col">
+    <div className="my-20 flex flex-col gap-10 px-10 sm:px-8 md:px-12 lg:px-20 xl:flex-row 2xl:px-48">
+      <div className="flex max-w-[20rem] flex-col">
         <h1 className="mb-6 text-2xl font-medium capitalize">Productos</h1>
 
         <h2 className="text-lg font-medium">Categorías</h2>
@@ -53,10 +53,29 @@ const AllProducts: FC = () => {
           ))}
         </div>
 
-        <h2 className="mt-3 text-lg font-medium">Filtros</h2>
+        <div className="mt-3 flex max-w-full flex-col gap-2">
+          <h2 className="text-lg font-medium">Precio</h2>
+          <div className="flex items-center gap-4">
+            <input
+              type="number"
+              min="0"
+              max="1000"
+              placeholder="min"
+              className="flex h-6 w-36 items-center justify-center rounded-md py-4 font-medium capitalize shadow-sm duration-200 ease-in-out active:scale-95 active:transform"
+            />
+            -
+            <input
+              type="number"
+              min="0"
+              max="1000"
+              placeholder="max"
+              className="flex h-6 w-36 items-center justify-center rounded-md py-4 font-medium capitalize shadow-sm duration-200 ease-in-out active:scale-95 active:transform"
+            />
+          </div>
+        </div>
       </div>
 
-      <div className="mt-20 flex flex-col">
+      <div className="flex flex-col">
         <form
           onSubmit={(e) => {
             e.preventDefault();
