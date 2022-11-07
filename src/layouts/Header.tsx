@@ -3,12 +3,12 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import type { FC } from "react";
 
-const Navbar: FC = () => {
+const Header: FC = () => {
   const { status } = useSession();
 
   return (
     <nav className="relative z-10 flex items-center justify-between px-10 py-2 shadow-md sm:py-4 sm:px-10 md:px-20 lg:px-44 xl:px-52 2xl:px-72">
-      <Link href="/" className="font-cookie text-2xl font-bold 3xl:text-3xl 4xl:text-4xl">
+      <Link href="/" className="font-cookie text-2xl font-medium 3xl:text-3xl 4xl:text-4xl">
         <span className="hidden sm:inline">Escarlata Makeup</span>
         <span className="sm:hidden">Escarlata M.</span>
       </Link>
@@ -87,4 +87,4 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
+export default Header;
