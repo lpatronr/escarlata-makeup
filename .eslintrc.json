@@ -55,6 +55,8 @@
         "react/no-array-index-key": "error",
         "react/no-deprecated": "error",
         "react/jsx-pascal-case": "error",
+        "eqeqeq": "error",
+        "no-unneeded-ternary": "error",
         "@typescript-eslint/no-explicit-any": "error",
         "@typescript-eslint/no-meaningless-void-operator": "warn",
         "@typescript-eslint/no-confusing-void-expression": "error",
