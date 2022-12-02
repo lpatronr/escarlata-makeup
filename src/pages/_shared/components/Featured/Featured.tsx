@@ -1,7 +1,7 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { type FC } from "react";
-import Button from "@/components/Button";
+import { Button } from "@/components/buttons";
 import type { RefObject } from "react";
 
 const mock = [

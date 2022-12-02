@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { type FC } from "react";
 import HeroImage from "@/assets/images/hero.png";
-import Button from "@/components/Button";
+import { Button } from "@/components/buttons";
 import type { HeroesQuery } from "@/generated/types";
 
 type Props = {
