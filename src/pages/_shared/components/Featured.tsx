@@ -1,7 +1,8 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
+import { type FC } from "react";
 import Button from "@/components/Button";
-import type { FC } from "react";
+import type { RefObject } from "react";
 
 const mock = [
   {
@@ -37,8 +38,12 @@ const mock = [
   },
 ];
 
-const Featured: FC = () => (
-  <div className="mt-12 px-10 sm:px-10 md:px-20 lg:px-32 xl:px-40 2xl:px-48">
+type Props = {
+  featuredRef: RefObject<HTMLDivElement>;
+};
+
+const Featured: FC<Props> = ({ featuredRef }) => (
+  <div className="mt-12 px-10 sm:px-10 md:px-20 lg:px-32 xl:px-40 2xl:px-48" ref={featuredRef}>
     <h1 className="mb-6 text-2xl font-medium capitalize">Nuevo</h1>
 
     <Splide

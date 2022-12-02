@@ -1,0 +1,10 @@
+query Heroes {
+  heroes(first: 1) {
+    title
+    description
+    buttonText
+    image {
+      url
+    }
+  }
+}

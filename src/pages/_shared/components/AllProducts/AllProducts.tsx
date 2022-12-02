@@ -1,8 +1,8 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import Product from "@/pages/_components/AllProducts/Product";
-import { allCategories, mockProducts } from "@/pages/_components/AllProducts/mock";
-import cn from "@/utils/cn";
+import Product from "@/pages/_shared/components/AllProducts/Product";
+import { allCategories, mockProducts } from "@/pages/_shared/components/AllProducts/mock";
+import cs from "@/utils/cs";
 import type { FC } from "react";
 
 const AllProducts: FC = () => {
@@ -43,7 +43,7 @@ const AllProducts: FC = () => {
                 }
               }}
               type="button"
-              className={cn(
+              className={cs(
                 "flex h-6 w-36 items-center justify-center rounded-md py-4 font-medium capitalize shadow-sm duration-200 ease-in-out active:scale-95 active:transform",
                 selectedCategories.includes(id) ? "bg-indigo-400 text-white" : "bg-gray-200"
               )}

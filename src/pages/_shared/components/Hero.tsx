@@ -1,23 +1,31 @@
 import Image from "next/image";
+import { type FC } from "react";
 import HeroImage from "@/assets/images/hero.png";
 import Button from "@/components/Button";
-import type { FC } from "react";
+import type { HeroesQuery } from "@/generated/types";
 
-const Hero: FC = () => (
+type Props = {
+  heroData: HeroesQuery["heroes"][number] | undefined;
+  handleScrollToFeatured: () => void;
+};
+
+const Hero: FC<Props> = ({ heroData, handleScrollToFeatured }) => (
   <div className="flex w-full items-center justify-center gap-24 bg-indigo-200 py-14 px-10 shadow-md sm:px-40">
     <div className="flex flex-col gap-4">
       <div className="flex max-w-sm flex-col gap-4 text-center sm:max-w-md sm:text-left md:max-w-lg">
         <h1 className="text-2xl font-medium tracking-wide lg:text-3xl xl:text-5xl">
-          Encuentra tu combinación de maquillaje perfecta.
+          {heroData?.title}
         </h1>
-        <p className="text-md xl:text-lg">
-          Tanto si buscas una nueva base de maquillaje, un corrector, una sombra de ojos o una barra
-          de labios, podemos ayudarte a encontrar el maquillaje perfecto para tu tono de piel, tu
-          estilo y tu presupuesto.
-        </p>
+        <p className="text-md xl:text-lg">{heroData?.description}</p>
       </div>
 
-      <Button>Ver productos</Button>
+      <Button
+        onClick={() => {
+          handleScrollToFeatured();
+        }}
+      >
+        {heroData?.buttonText}
+      </Button>
     </div>
 
     <Image
