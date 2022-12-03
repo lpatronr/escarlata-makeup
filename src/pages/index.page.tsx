@@ -1,7 +1,6 @@
 import Head from "next/head";
 import { useRef } from "react";
-import type { HeroesQuery } from "@/generated/types";
-import { HeroesDocument } from "@/generated/types";
+import { type HeroQuery, HeroDocument } from "@/generated/cms/types";
 import { Footer, Header } from "@/layouts";
 import apolloClient from "@/lib/apollo-client";
 import { Hero, Featured, AllProducts } from "./_shared/components";
@@ -9,16 +8,18 @@ import type { GetStaticProps } from "next";
 import type { NextPage } from "next";
 
 type Props = {
-  heroData: HeroesQuery["heroes"][0] | undefined;
+  heroData: HeroQuery["heroes"][0] | undefined;
 };
 
 const Home: NextPage<Props> = ({ heroData }) => {
   const featuredRef = useRef<HTMLDivElement>(null);
 
   function handleScrollToFeatured(): void {
-    featuredRef.current?.scrollIntoView({
+    if (featuredRef.current === null) return;
+
+    window.scroll({
+      top: featuredRef.current?.offsetTop - 80,
       behavior: "smooth",
-      block: "start",
     });
   }
 
@@ -40,7 +41,7 @@ const Home: NextPage<Props> = ({ heroData }) => {
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const { data } = await apolloClient.query({
-    query: HeroesDocument,
+    query: HeroDocument,
   });
 
   const firstHero = data.heroes[0];

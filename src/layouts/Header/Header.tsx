@@ -20,24 +20,23 @@ const Header: FC = () => {
         <span className="sm:hidden">Escarlata M.</span>
       </Link>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-baseline gap-2">
         {isAuthenticated ? (
-          <Menu as="div" className="relative">
-            <Menu.Button className="inline-flex w-full items-center justify-center gap-1 rounded-md bg-gray-100 px-2 py-2 text-sm font-medium text-white hover:bg-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-              {userImage !== null ? (
-                <img
-                  src={userImage}
-                  alt="User image"
-                  className="h-6 w-6 cursor-pointer rounded-full"
-                />
-              ) : (
-                <UserCircleIcon className="h-6 w-6 cursor-pointer" />
-              )}
-              <ChevronDownIcon
-                className="h-5 w-5 text-black hover:text-violet-100"
-                aria-hidden="true"
-              />
-            </Menu.Button>
+          <Menu as="div" className="relative inline-block text-left">
+            <div>
+              <Menu.Button className="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                {userImage !== null ? (
+                  <img
+                    src={userImage}
+                    alt="User image"
+                    className="h-6 w-6 cursor-pointer rounded-full"
+                  />
+                ) : (
+                  <UserCircleIcon className="h-6 w-6 cursor-pointer" />
+                )}
+                <ChevronDownIcon className="h-5 w-5 text-black" aria-hidden="true" />
+              </Menu.Button>
+            </div>
 
             <Transition
               as={Fragment}
@@ -48,18 +47,18 @@ const Header: FC = () => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute mt-2 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="flex w-44 flex-col divide-y divide-gray-100 p-2">
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="divide-y divide-gray-100 py-1">
                   <Menu.Item>
                     {({ active }) => (
                       <Link
                         href="/account"
                         className={cs(
-                          "flex items-center gap-1 rounded-md px-2 py-1",
-                          active && "bg-gray-100"
+                          active && "bg-gray-100",
+                          "flex w-full items-center gap-1 self-stretch px-4 py-2 text-sm"
                         )}
                       >
-                        <StarIcon className="h-4 w-4 text-black" />
+                        <StarIcon className="h-4 w-4 text-black" aria-hidden="true" />
                         Favoritos
                       </Link>
                     )}
@@ -70,14 +69,14 @@ const Header: FC = () => {
                       <button
                         type="button"
                         className={cs(
-                          "flex items-center gap-1 rounded-md px-2 py-1",
-                          active && "bg-gray-100"
+                          active && "bg-gray-100",
+                          "flex w-full items-center gap-1 self-stretch px-4 py-2 text-sm"
                         )}
                         onClick={() => {
                           void signOut();
                         }}
                       >
-                        <LockClosedIcon className="h-4 w-4 text-black" />
+                        <LockClosedIcon className="h-4 w-4 text-black" aria-hidden="true" />
                         Cerrar sesión
                       </button>
                     )}
@@ -91,7 +90,9 @@ const Header: FC = () => {
             type="button"
             aria-label={isAuthenticated ? "Opciones de Usuario" : "Iniciar sesión"}
             onClick={() => {
-              void signIn("google");
+              void signIn("google", undefined, {
+                prompt: "login",
+              });
             }}
           >
             <UserCircleIcon className="h-6 w-6 flex-shrink-0 text-gray-600 hover:text-gray-800" />

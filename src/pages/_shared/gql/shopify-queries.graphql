@@ -1,0 +1,26 @@
+query FeaturedProducts {
+  products(sortKey: CREATED_AT, first: 8) {
+    nodes {
+      id
+      title
+      description
+      images(first: 1) {
+        edges {
+          node {
+            id
+            altText
+            url
+          }
+        }
+      }
+      productType
+      totalInventory
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
+}

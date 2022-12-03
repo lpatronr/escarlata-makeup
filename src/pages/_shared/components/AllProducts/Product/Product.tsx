@@ -1,20 +1,17 @@
 import { ShoppingCartIcon, StarIcon } from "@heroicons/react/24/outline";
 import { type FC } from "react";
+import type { mockProducts } from "@/pages/_shared/components/AllProducts/mock";
 
 type Props = {
-  title: string;
-  image: string;
-  category: string;
-  description: string;
-  price: number;
+  product: typeof mockProducts[number];
 };
 
-const Product: FC<Props> = ({ title, description, price, image, category }) => (
+const Product: FC<Props> = ({ product }) => (
   <div className="flex flex-col justify-between rounded-md p-3 shadow-md">
     <div>
       <img
-        src={image}
-        alt={title}
+        src={product.image}
+        alt={product.title}
         className="h-64 w-full rounded-md object-cover xs:h-96 sm:h-64 md:h-72 lg:h-80 xl:h-96"
         width={100}
         height={100}
@@ -22,17 +19,19 @@ const Product: FC<Props> = ({ title, description, price, image, category }) => (
 
       <div className="mt-2 flex flex-col gap-1">
         <span className="self-start rounded-md bg-gray-200 px-1 py-0.5 text-xs font-medium">
-          {category}
+          {product.category}
         </span>
-        <span className="text-lg font-medium capitalize">{title}</span>
+        <span className="text-lg font-medium capitalize">{product.title}</span>
         <p className="text-sm text-gray-500">
-          {description.length > 50 ? `${description.substring(0, 50)}...` : description}
+          {product.description.length > 50
+            ? `${product.description.substring(0, 50)}...`
+            : product.description}
         </p>
       </div>
     </div>
 
     <div className="mt-4 flex items-center justify-between">
-      <p className="text-lg font-medium">${price}</p>
+      <p className="text-lg font-medium">${product.price}</p>
 
       <div className=" flex items-center gap-1">
         <button

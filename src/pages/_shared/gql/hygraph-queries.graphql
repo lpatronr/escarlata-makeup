@@ -1,4 +1,4 @@
-query Heroes {
+query Hero {
   heroes(first: 1) {
     title
     description

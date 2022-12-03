@@ -2,10 +2,10 @@ import Image from "next/image";
 import { type FC } from "react";
 import HeroImage from "@/assets/images/hero.png";
 import { Button } from "@/components/buttons";
-import type { HeroesQuery } from "@/generated/types";
+import { type HeroQuery } from "@/generated/cms/types";
 
 type Props = {
-  heroData: HeroesQuery["heroes"][number] | undefined;
+  heroData: HeroQuery["heroes"][number] | undefined;
   handleScrollToFeatured: () => void;
 };
 
