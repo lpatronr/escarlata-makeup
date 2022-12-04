@@ -22,10 +22,11 @@ const AllProducts: FC = () => {
   const [query, setQuery] = useState("");
   const [sortOptions, setSortOptions] = useState(_sortOptions);
   const [isRefetching, setIsRefetching] = useState(false);
+  const numberOfProducts = 12;
   const { data, loading, refetch } = useQuery(ProductsDocument, {
     variables: {
       query: "",
-      first: 2,
+      first: numberOfProducts,
       after: null,
       before: null,
       sortKey: sortOptions.find((option) => option.current)?.sort ?? ProductSortKeys.CreatedAt,
@@ -55,7 +56,7 @@ const AllProducts: FC = () => {
       void refetch({
         query,
         before: null,
-        first: 2,
+        first: numberOfProducts,
         last: null,
         after: endCursor,
         sortKey: sortOptions.find((option) => option.current)?.sort ?? ProductSortKeys.CreatedAt,
@@ -75,7 +76,7 @@ const AllProducts: FC = () => {
       void refetch({
         query,
         first: null,
-        last: 2,
+        last: numberOfProducts,
         before: startCursor,
         after: null,
         sortKey: sortOptions.find((option) => option.current)?.sort ?? ProductSortKeys.CreatedAt,
@@ -188,12 +189,12 @@ const AllProducts: FC = () => {
 
       <section aria-labelledby="products-heading" className="pt-6 pb-24">
         <h2 id="products-heading" className="sr-only">
-          Products
+          Productos
         </h2>
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
           <form className="hidden lg:block">
-            <h3 className="sr-only">Categories</h3>
+            <h3 className="sr-only">Categorías</h3>
             <ul
               role="list"
               className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900"
@@ -264,30 +265,30 @@ const AllProducts: FC = () => {
               )}
             </div>
           </div>
+        </div>
 
-          <div className="mt-8 flex gap-4 border-t border-gray-200 pt-8">
-            <button
-              type="button"
-              disabled={!hasPreviousPage}
-              className="mt-8 flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-              onClick={() => {
-                handlePreviousPage();
-              }}
-            >
-              <ArrowLongLeftIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
+        <div className="mt-8 flex gap-4 border-t border-gray-200">
+          <button
+            type="button"
+            disabled={!hasPreviousPage}
+            className="mt-8 flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            onClick={() => {
+              handlePreviousPage();
+            }}
+          >
+            <ArrowLongLeftIcon className="h-5 w-5" aria-hidden="true" />
+          </button>
 
-            <button
-              type="button"
-              className="mt-8 flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-              disabled={!hasNextPage}
-              onClick={() => {
-                handleNextPage();
-              }}
-            >
-              <ArrowLongRightIcon className="h-5 w-5" aria-hidden="true" />
-            </button>
-          </div>
+          <button
+            type="button"
+            className="mt-8 flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            disabled={!hasNextPage}
+            onClick={() => {
+              handleNextPage();
+            }}
+          >
+            <ArrowLongRightIcon className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
       </section>
     </main>

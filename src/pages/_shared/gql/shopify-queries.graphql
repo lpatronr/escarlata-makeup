@@ -59,3 +59,9 @@ query Products(
     }
   }
 }
+
+query ProductFromId($id: ID!) {
+  product(id: $id) {
+    ...GeneralInfo
+  }
+}
