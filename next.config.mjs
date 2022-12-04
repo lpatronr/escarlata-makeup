@@ -14,5 +14,8 @@ const config = {
     defaultLocale: "en",
   },
   pageExtensions: ["page.tsx", "page.ts"],
+  images: {
+    domains: ["cdn.shopify.com"],
+  },
 };
 export default config;

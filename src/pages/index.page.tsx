@@ -42,6 +42,9 @@ const Home: NextPage<Props> = ({ heroData }) => {
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const { data } = await apolloClient.query({
     query: HeroDocument,
+    context: {
+      clientName: "hygraph",
+    },
   });
 
   const firstHero = data.heroes[0];

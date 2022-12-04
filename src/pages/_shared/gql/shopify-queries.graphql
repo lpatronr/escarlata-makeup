@@ -1,26 +1,61 @@
+fragment GeneralInfo on Product {
+  id
+  title
+  tags
+  images(first: 1) {
+    edges {
+      node {
+        id
+        altText
+        url
+      }
+    }
+  }
+  productType
+  priceRange {
+    minVariantPrice {
+      amount
+    }
+  }
+}
+
 query FeaturedProducts {
-  products(sortKey: CREATED_AT, first: 8) {
+  products(sortKey: CREATED_AT, first: 7) {
     nodes {
-      id
-      title
-      description
-      images(first: 1) {
-        edges {
-          node {
-            id
-            altText
-            url
-          }
-        }
-      }
-      productType
-      totalInventory
-      priceRange {
-        minVariantPrice {
-          amount
-          currencyCode
-        }
-      }
+      ...GeneralInfo
+    }
+  }
+}
+
+query Products(
+  $first: Int
+  $last: Int
+  $query: String
+  $sortKey: ProductSortKeys
+  $reverse: Boolean
+  $after: String
+  $before: String
+) {
+  products(
+    query: $query
+    first: $first
+    last: $last
+    sortKey: $sortKey
+    reverse: $reverse
+    after: $after
+    before: $before
+  ) {
+    nodes {
+      ...GeneralInfo
+    }
+    edges {
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
     }
   }
 }
