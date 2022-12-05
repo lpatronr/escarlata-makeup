@@ -1,10 +1,10 @@
+import { favoritesRouter } from "@/server/trpc/router/favorites";
 import { router } from "@/server/trpc/trpc";
 import { authRouter } from "./auth";
-import { cartRouter } from "./cart";
 
 export const appRouter = router({
-  cart: cartRouter,
   auth: authRouter,
+  favorites: favoritesRouter,
 });
 
 // export type definition of API

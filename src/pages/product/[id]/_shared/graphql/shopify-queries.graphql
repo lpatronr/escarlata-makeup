@@ -1,0 +1,39 @@
+query ProductFromId($id: ID!) {
+  product(id: $id) {
+    id
+    title
+    description
+    productType
+    images(first: 4) {
+      nodes {
+        id
+        url
+        altText
+      }
+    }
+    totalInventory
+    priceRange {
+      minVariantPrice {
+        amount
+      }
+    }
+  }
+
+  productRecommendations(productId: $id) {
+    id
+    title
+    tags
+    priceRange {
+      minVariantPrice {
+        amount
+      }
+    }
+    images(first: 1) {
+      nodes {
+        id
+        url
+        altText
+      }
+    }
+  }
+}

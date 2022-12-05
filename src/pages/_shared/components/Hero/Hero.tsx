@@ -23,6 +23,7 @@ const Hero: FC<Props> = ({ heroData, handleScrollToFeatured }) => (
         onClick={() => {
           handleScrollToFeatured();
         }}
+        aria-label="Desplazarse a la sección de productos destacados"
       >
         {heroData?.buttonText}
       </Button>

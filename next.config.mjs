@@ -15,7 +15,7 @@ const config = {
   },
   pageExtensions: ["page.tsx", "page.ts"],
   images: {
-    domains: ["cdn.shopify.com"],
+    domains: ["cdn.shopify.com", "lh3.googleusercontent.com"],
   },
 };
 export default config;

@@ -1,0 +1,17 @@
+query ProductsForFavorites {
+  products(first: 250) {
+    nodes {
+      id
+      title
+      images(first: 1) {
+        edges {
+          node {
+            id
+            src
+            altText
+          }
+        }
+      }
+    }
+  }
+}
