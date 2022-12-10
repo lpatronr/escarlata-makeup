@@ -5,11 +5,11 @@ import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Button } from "@/components/buttons";
+import AddToCartButton from "@/components/buttons/AddToCartButton";
 import FavoriteButton from "@/components/buttons/FavoriteButton";
 import { ProductFromIdDocument } from "@/generated/shopify/types";
 import { Header } from "@/layouts";
-import ProductRecommendationCard from "@/pages/product/[id]/_shared/components/ProductRecommendationCard";
+import RecommendedProduct from "@/pages/product/[id]/_shared/components/ProductRecommendationCard";
 import {
   ProductImagesSkeleton,
   ProductInfoSkeleton,
@@ -56,7 +56,7 @@ const ProductPage: NextPage = () => {
 
       <Header />
 
-      <main className="mx-auto mt-20 flex max-w-2xl flex-col gap-4 rounded-lg border border-gray-100 px-8 py-16 lg:max-w-7xl lg:flex-row">
+      <main className="mx-auto mt-20 flex max-w-2xl flex-col gap-4 rounded-lg border border-gray-100 px-4 py-16 lg:max-w-7xl lg:flex-row">
         <div className="flex justify-center gap-3 lg:justify-start">
           {loading || allImages === undefined || selectedImage.src === undefined ? (
             <ProductImagesSkeleton />
@@ -69,7 +69,7 @@ const ProductPage: NextPage = () => {
                 height={500}
                 quality={100}
                 priority
-                className="h-[32rem] w-auto rounded-lg object-cover object-center"
+                className="h-[32rem] w-[30rem] rounded-lg object-cover object-center"
               />
 
               <div className="hidden max-h-[32rem] grid-rows-4 gap-2 sm:grid">
@@ -81,7 +81,7 @@ const ProductPage: NextPage = () => {
                     width={100}
                     height={100}
                     className={cs(
-                      "h-full w-auto cursor-pointer rounded-lg object-cover object-center",
+                      "h-full h-[8rem] w-auto w-[6rem] cursor-pointer rounded-lg object-cover object-center",
                       selectedImage.src === image?.url && "ring-2 ring-red-500 ring-opacity-75"
                     )}
                     onClick={() => {
@@ -114,8 +114,13 @@ const ProductPage: NextPage = () => {
                   <p className="text-sm text-neutral-600">En stock y listo para enviar</p>
                 </div>
 
-                <div className="flex items-center justify-center gap-6 sm:gap-8 lg:justify-start">
-                  <Button className="mt-2 px-6 xs:px-12 sm:px-16">Agregar al bolso</Button>
+                <div className="flex items-center gap-6 sm:gap-8">
+                  <AddToCartButton
+                    merchandiseId={product.variants.edges[0]?.node.id as string}
+                    className="mt-2 self-start rounded-sm bg-red-500 px-6 px-4 py-2 font-medium text-white shadow-md duration-200 ease-in-out hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 active:scale-95 active:transform xs:px-12 sm:mx-0 sm:px-16"
+                  >
+                    Agregar al bolso
+                  </AddToCartButton>
 
                   <FavoriteButton productId={product.id} />
                 </div>
@@ -149,17 +154,15 @@ const ProductPage: NextPage = () => {
 
           <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {productRecommendations?.map((product) => (
-              <ProductRecommendationCard
-                product={{
-                  tags: product?.tags,
-                  image: {
-                    url: product?.images?.nodes[0]?.url,
-                    altText: product?.images?.nodes[0]?.altText,
-                  },
-                  title: product?.title,
-                  price: product?.priceRange?.minVariantPrice?.amount,
-                }}
-                key={product?.id}
+              <RecommendedProduct
+                key={product.id}
+                title={product.title}
+                tags={product.tags}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                image={product.images?.nodes[0]}
+                id={product.id}
+                amount={product.priceRange.minVariantPrice.amount}
               />
             ))}
           </div>

@@ -20,7 +20,7 @@ fragment GeneralInfo on Product {
 }
 
 query FeaturedProducts {
-  products(sortKey: CREATED_AT, first: 7) {
+  products(sortKey: CREATED_AT, first: 7, reverse: true) {
     nodes {
       ...GeneralInfo
     }

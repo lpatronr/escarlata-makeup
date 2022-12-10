@@ -11,6 +11,13 @@ query ProductFromId($id: ID!) {
         altText
       }
     }
+    variants(first: 1) {
+      edges {
+        node {
+          id
+        }
+      }
+    }
     totalInventory
     priceRange {
       minVariantPrice {

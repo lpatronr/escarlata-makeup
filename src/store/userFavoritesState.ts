@@ -6,9 +6,9 @@ type State = {
   favoriteId: Favorite["id"];
 };
 
-const userFavoritesAtom = atom<State[]>({
+const userFavoritesState = atom<State[]>({
   key: "userFavorites",
   default: [],
 });
 
-export default userFavoritesAtom;
+export default userFavoritesState;

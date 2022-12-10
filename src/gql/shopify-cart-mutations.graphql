@@ -1,0 +1,17 @@
+mutation CreateCart($merchandiseId: ID!) {
+  cartCreate(input: { lines: [{ merchandiseId: $merchandiseId, quantity: 1 }] }) {
+    cart {
+      id
+      lines(first: 1) {
+        nodes {
+          id
+          cost {
+            totalAmount {
+              amount
+            }
+          }
+        }
+      }
+    }
+  }
+}

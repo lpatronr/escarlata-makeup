@@ -43,6 +43,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   favorites     Favorite[]
+  cart          Cart?
 }
 
 model VerificationToken {
@@ -58,4 +59,20 @@ model Favorite {
   user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
   productId String
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String     @unique
+  shopifyId String
+  lineItems LineItem[]
+}
+
+model LineItem {
+  id            String @id @default(cuid())
+  cart          Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId        String
+  merchandiseId String
+  quantity      Int
 }

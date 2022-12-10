@@ -1,1 +1,1 @@
-export { default } from "./ProductRecommendationCard";
+export { default } from "./RecommendedProduct";

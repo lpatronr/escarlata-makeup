@@ -1,0 +1,22 @@
+query GetCart($id: ID!) {
+  cart(id: $id) {
+    cost {
+      totalAmount {
+        amount
+      }
+    }
+    lines(first: 250) {
+      edges {
+        node {
+          id
+          cost {
+            totalAmount {
+              amount
+            }
+          }
+          quantity
+        }
+      }
+    }
+  }
+}

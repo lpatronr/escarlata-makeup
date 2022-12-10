@@ -11,7 +11,7 @@ import SkeletonProduct from "@/pages/_shared/components/AllProducts/SkeletonProd
 import cs from "@/utils/cs";
 
 const _sortOptions = [
-  { name: "Nuevo", sort: ProductSortKeys.CreatedAt, reverse: false, current: true },
+  { name: "Nuevo", sort: ProductSortKeys.CreatedAt, reverse: true, current: true },
   { name: "Precio: Menor a Mayor", sort: ProductSortKeys.Price, reverse: false, current: false },
   { name: "Precio: Mayor a Menor", sort: ProductSortKeys.Price, reverse: true, current: false },
 ];
